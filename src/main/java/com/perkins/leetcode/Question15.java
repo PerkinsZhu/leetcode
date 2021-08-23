@@ -12,7 +12,7 @@ public class Question15 {
     }
 
     private static void print(List<List<Integer>> list) {
-        list.forEach(integers -> System.out.printf(list.toString()));
+        System.out.printf(list.toString());
     }
 
     public static List<List<Integer>> threeSum(int[] nums) {
@@ -20,29 +20,43 @@ public class Question15 {
             return new ArrayList<>(0);
         }
         int size = nums.length;
-        sort(nums);
+        java.util.Arrays.sort(nums);
         List<List<Integer>> result = new ArrayList<>();
+        if (nums[0] > 0) {
+            return result;
+        }
         for (int i = 0; i < size; i++) {
             int s = i + 1;
             int e = size - 1;
+            if ((i + 1) < size && nums[i] == nums[i + 1]) {
+                continue;
+            }
             while (s < e) {
-                if (nums[s] == nums[s++]) {
-                    s++;
-                }
-                if (nums[e] < nums[e--]) {
-                    s--;
-                }
                 System.out.println(i + " " + s + " " + e);
-                if (nums[i] + nums[s] + nums[e] == 0) {
+                int sum = nums[i] + nums[s] + nums[e];
+                if (sum == 0) {
+                    while (nums[s] == nums[s + 1]) {
+                        s++;
+                    }
+
+                    while (nums[e] < nums[e - 1]) {
+                        e--;
+                    }
+
                     List item = new ArrayList(3);
                     item.add(nums[i]);
                     item.add(nums[s]);
                     item.add(nums[e]);
                     result.add(item);
+                    s++;
+                    e--;
+                } else if (sum > 0) {
+                    e--;
+                } else if (sum < 0) {
+                    s++;
                 }
             }
         }
-
         return result;
     }
 

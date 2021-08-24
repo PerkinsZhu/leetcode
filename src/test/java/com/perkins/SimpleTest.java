@@ -24,7 +24,7 @@ public class SimpleTest {
     public void testRandom() {
         Random random = new Random();
         for (int i = 0; i < 1000; i++) {
-            System.out.println(Math.random());
+            System.out.println((int) (Math.random() * 10));
         }
     }
 }

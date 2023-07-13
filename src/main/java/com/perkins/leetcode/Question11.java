@@ -7,7 +7,7 @@ package com.perkins.leetcode;
  **/
 public class Question11 {
 
-    // 从两端向中间压缩
+    // 从两端向中间压缩,可降低时间复杂度
     public int maxArea(int[] height) {
         int max = 0;
         int endIndex = height.length - 1;
